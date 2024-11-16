@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('title');
-            $table->text('description');
-            $table->enum('status', ['Baja', 'Media', 'Alta']);
-            $table->date('due_date');
-            $table->timestamps();
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
     }
 };

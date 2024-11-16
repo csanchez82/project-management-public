@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
 
     //Tasks
     Route::get('/tasks', [TasksController::class, 'index'])->name('tasks.index');
