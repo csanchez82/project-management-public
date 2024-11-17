@@ -1,5 +1,6 @@
 <x-guest-layout>
     <div class="flex flex-col md:flex-row h-screen items-center justify-center">
+        
         <div class="w-full md:w-1/2 p-6 flex justify-center">
             <x-authentication-card class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
                 <x-slot name="logo">
