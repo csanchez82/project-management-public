@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->text('description');
             $table->enum('status', ['Baja', 'Media', 'Alta']);
             $table->date('due_date');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

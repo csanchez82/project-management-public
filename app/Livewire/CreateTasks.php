@@ -26,7 +26,7 @@ class CreateTasks extends Component
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function CrearTarea(Authenticatable $user)
+    public function CreateTask(Authenticatable $user)
     {
         $validatedData = $this->validate();
 

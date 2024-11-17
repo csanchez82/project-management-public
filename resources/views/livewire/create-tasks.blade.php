@@ -1,4 +1,4 @@
-<form wire:submit.prevent="CrearTarea" enctype="multipart/form-data">
+<form wire:submit.prevent="CreateTask" enctype="multipart/form-data">
 
     <!-- Botones de acción -->
     <div class="mb-6">

@@ -6,3 +6,8 @@
     display: none;
 }
 
+  /* Estilo para permitir el salto de línea */
+  .wrap-text {
+    white-space: normal; /* Permite que el texto haga salto de línea */
+    word-wrap: break-word; /* Asegura que las palabras largas se dividan si es necesario */
+}

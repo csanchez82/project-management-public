@@ -24,4 +24,25 @@ class TasksController extends Controller
         // Display the create task form
         return view('tasks.create');
     }
+
+    public function edit(Task $task)
+    {
+        return view('tasks.edit', [
+            'task' => $task
+        ]);
+    }
+
+    public function destroy(Task $task)
+    {
+        // Verificar que la tarea pertenece al usuario autenticado
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'No autorizado');
+        }
+
+        // Eliminar la tarea
+        $task->delete();
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('tasks.index')->with('success', 'La tarea fue eliminada exitosamente.');
+    }
 }
