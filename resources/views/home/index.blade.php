@@ -8,9 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                     <!-- Total de Tareas -->
-                    <div class="bg-blue-500 text-white rounded-lg p-4">
+                    <div class="bg-purple-500 text-white rounded-lg p-4">
                         <h3 class="text-lg font-bold">Total de Tareas</h3>
                         <p class="text-2xl font-bold">{{ $totalTasks }}</p>
                     </div>
@@ -31,6 +31,12 @@
                     <div class="bg-red-500 text-white rounded-lg p-4">
                         <h3 class="text-lg font-bold">Prioridad Alta</h3>
                         <p class="text-2xl font-bold">{{ $highPriorityTasks }}</p>
+                    </div>
+
+                    <!-- Tareas Completadas -->
+                    <div class="bg-indigo-500 text-white rounded-lg p-4">
+                        <h3 class="text-lg font-bold">Tareas Completadas</h3>
+                        <p class="text-2xl font-bold">{{ $completedTasks }}</p>
                     </div>
                 </div>
             </div>

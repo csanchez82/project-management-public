@@ -6,10 +6,8 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class TasksController extends Controller
 {
-
     public function index()
     {
         // Fetch tasks for the authenticated user
@@ -44,5 +42,18 @@ class TasksController extends Controller
 
         // Redirigir con un mensaje de éxito
         return redirect()->route('tasks.index')->with('success', 'La tarea fue eliminada exitosamente.');
+    }
+
+    public function complete(Request $request, Task $task)
+    {
+        // Verificar que la tarea pertenece al usuario autenticado
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'No autorizado');
+        }
+
+        // Marcar la tarea como completada
+        $task->update(['completed' => true]);
+
+        return redirect()->route('tasks.index')->with('success', 'La tarea fue marcada como completada.');
     }
 }
