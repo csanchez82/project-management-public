@@ -65,12 +65,53 @@
         <!-- Page Content -->
         <main>
             @if (isset($demoMessage))
-                <div class="bg-yellow-200 text-yellow-800 text-center py-2">
-                    {{ $demoMessage }}
-                </div>
-            @endif
+            <div class="bg-yellow-100 border border-yellow-300 text-yellow-700 dark:bg-yellow-200 dark:border-yellow-400 dark:text-yellow-800 rounded-lg px-4 py-2 mx-auto my-4 max-w-4xl shadow-md text-center">
+                <p class="text-sm font-medium">{{ $demoMessage }}</p>
+            </div>
+        @endif
+        
         
             {{ $slot }}
+
+            <footer class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+                    <!-- Información de NegSoft -->
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <p class="text-lg font-semibold">Desarrollado por 
+                            <a href="https://www.negsoft.com" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                NegSoft México
+                            </a>
+                        </p>
+                        <p class="text-sm italic mt-1">"Software para tu negocio"</p>
+                    </div>
+                    <!-- Contacto -->
+                    <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                        <!-- Teléfono -->
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone mr-2">
+                                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+                                <path d="M12 18h.01"/>
+                            </svg>
+                            <a href="tel:+528336350440" class="hover:text-blue-600 dark:hover:text-blue-400">+52 833 635 0440</a>
+                        </div>
+                        <!-- Correo -->
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail mr-2">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <a href="mailto:contacto@negsoft.com" class="hover:text-blue-600 dark:hover:text-blue-400">contacto@negsoft.com</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Línea divisoria -->
+                <div class="mt-4 border-t border-gray-300 dark:border-gray-700"></div>
+                <!-- Derechos reservados -->
+                <div class="mt-4 text-center text-sm">
+                    <p>&copy; {{ date('Y') }} NegSoft México. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+            
         </main>
         
     </div>
