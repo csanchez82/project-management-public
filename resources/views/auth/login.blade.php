@@ -1,48 +1,108 @@
-a<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<x-guest-layout>
+    <div class="flex flex-col md:flex-row h-screen items-center justify-center">
+        <div class="w-full md:w-1/2 p-6 flex justify-center">
+            <x-authentication-card class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+                <x-slot name="logo">
+                    <x-authentication-card-logo class="mx-auto w-16 h-16 mb-4" />
+                </x-slot>
 
-        <x-validation-errors class="mb-4" />
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Bienvenido</h2>
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                {{ $value }}
-            </div>
-        @endsession
+                <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
+                @if (session('status'))
+                    <div class="mb-4 font-medium  text-green-600">
+                        {{ session('status') }}
+                    </div>
                 @endif
 
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
+                <form method="POST" action="{{ route('login') }}" id="loginForm">
+                    @csrf
+
+                    <div class="mb-4">
+                        <x-label for="email" value="Correo Electrónico" />
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    </div>
+
+                    <div class="mb-4">
+                        <x-label for="password" value="Contraseña" />
+                        <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                    </div>
+
+                    <div class="flex items-center justify-between mb-4">
+                        <label for="remember_me" class="flex items-center">
+                            <x-checkbox id="remember_me" name="remember" />
+                            <span class="ml-2  text-gray-600">Recuérdame</span>
+                        </label>
+
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class=" text-blue-600 hover:">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        @endif
+                    </div>
+
+                    <x-button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+                        Iniciar Sesión
+                    </x-button>
+                </form>
+            </x-authentication-card>
+        </div>
+
+        <div class="w-full md:w-1/2 p-6 flex items-center">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Usuarios Demo</h2>
+                    <table class="w-full text-left text-gray-600 border-collapse shadow-md">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-blue-600 to-purple-500 text-white">
+                                <th class="py-3 px-4  font-semibold">Correo</th>
+                                <th class="py-3 px-4  font-semibold">Contraseña</th>
+                                <th class="py-3 px-4  font-semibold">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even:bg-gray-50 odd:bg-white hover:bg-blue-100">
+                                <td class="py-3 px-4 border-b">contacto@negsoft.com</td>
+                                <td class="py-3 px-4 border-b">contacto@negsoft.com</td>
+                                <td class="py-3 px-4 border-b">
+                                    <button onclick="copyAndClear('contacto@negsoft.com', 'contacto@negsoft.com')" class="text-blue-600 hover:">
+                                        Copiar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="even:bg-gray-50 odd:bg-white hover:bg-blue-100">
+                                <td class="py-3 px-4 border-b">fabiola@negsoft.com</td>
+                                <td class="py-3 px-4 border-b">contacto@negsoft.com</td>
+                                <td class="py-3 px-4 border-b">
+                                    <button onclick="copyAndClear('fabiola@negsoft.com', 'contacto@negsoft.com')" class="text-blue-600 hover:">
+                                        Copiar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="even:bg-gray-50 odd:bg-white hover:bg-blue-100">
+                                <td class="py-3 px-4">david@negsoft.com</td>
+                                <td class="py-3 px-4">contacto@negsoft.com</td>
+                                <td class="py-3 px-4">
+                                    <button onclick="copyAndClear('david@negsoft.com', 'contacto@negsoft.com')" class="text-blue-600 hover:">
+                                        Copiar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </form>
-    </x-authentication-card>
+        </div>
+    </div>
+
+    <script>
+        function copyAndClear(email, password) {
+            if (confirm("¿Estás seguro de que quieres ingresar con estas credenciales?")) {
+                document.getElementById('email').value = email;
+                document.getElementById('password').value = password;
+                document.getElementById('loginForm').submit();
+            }
+        }
+    </script>
 </x-guest-layout>
