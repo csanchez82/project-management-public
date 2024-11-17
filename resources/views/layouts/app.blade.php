@@ -64,8 +64,15 @@
 
         <!-- Page Content -->
         <main>
+            @if (isset($demoMessage))
+                <div class="bg-yellow-200 text-yellow-800 text-center py-2">
+                    {{ $demoMessage }}
+                </div>
+            @endif
+        
             {{ $slot }}
         </main>
+        
     </div>
 
     @stack('modals')
